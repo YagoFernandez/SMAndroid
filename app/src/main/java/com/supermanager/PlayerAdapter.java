@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.sm.model.Player;
+import com.sm.model.SMPlayer;
 
 import java.util.List;
 
@@ -20,9 +20,9 @@ import butterknife.InjectView;
 public class PlayerAdapter extends RecyclerView.Adapter<PlayerViewHolder> {
 
     private Context context;
-    private List<Player> players;
+    private List<SMPlayer> players;
 
-    public PlayerAdapter(List<Player> players, Context context) {
+    public PlayerAdapter(List<SMPlayer> players, Context context) {
 
         this.players = players;
         this.context = context;
@@ -53,7 +53,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerViewHolder> {
      */
     public void onBindViewHolder(PlayerViewHolder holder, int position) {
 
-        Player player = players.get(position);
+        SMPlayer player = players.get(position);
         holder.bindTitular(player);
     }
 

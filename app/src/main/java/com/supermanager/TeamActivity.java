@@ -8,7 +8,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sm.model.Player;
+import com.sm.model.SMPlayer;
 import com.sm.model.Team;
 
 
@@ -54,7 +54,7 @@ public class TeamActivity extends AppCompatActivity {
         this.playersList.setAdapter(playerListAdapter);
     }*/
 
-    private void initPlayerList(List<Player> players) {
+    private void initPlayerList(List<SMPlayer> players) {
 
         playersList = (RecyclerView) findViewById(R.id.players_list);
         playersList.setHasFixedSize(true);

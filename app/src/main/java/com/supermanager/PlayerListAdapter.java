@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.sm.model.Player;
+import com.sm.model.SMPlayer;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -22,9 +22,9 @@ import butterknife.ButterKnife;
 public class PlayerListAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Player> players;
+    private List<SMPlayer> players;
 
-    public PlayerListAdapter(Context context, List<Player> players) {
+    public PlayerListAdapter(Context context, List<SMPlayer> players) {
         this.context = context;
         this.players = players;
     }
@@ -65,7 +65,7 @@ public class PlayerListAdapter extends BaseAdapter {
     }
 
     private void initViewData(View view, int index) {
-        Player player = this.players.get(index);
+        SMPlayer player = this.players.get(index);
         initName(view, player);
         initTeam(view, player);
         initValue(view, player);
@@ -74,32 +74,38 @@ public class PlayerListAdapter extends BaseAdapter {
         //initIcons(view, player);
     }
 
-    private void initImage(View view, Player player) {
+    private void initImage(View view, SMPlayer player) {
         ImageView imageView = (ImageView) view.findViewById(R.id.imageUrl);
-        Picasso.with(context).load(player.getImageUrl()).into(imageView);
+
+        if (player.getImageUrl().isEmpty()) {
+            Picasso.with(context).load(player.getImageUrl()).into(imageView);
+        }
+        else {
+            Picasso.with(context).load(R.drawable.ico_noseleccionado).into(imageView);
+        }
     }
 
-    private void initName(View view, Player player) {
+    private void initName(View view, SMPlayer player) {
         TextView nameView = (TextView) view.findViewById(R.id.name);
         nameView.setText(player.getName());
     }
 
-    private void initTeam(View view, Player player) {
+    private void initTeam(View view, SMPlayer player) {
         TextView teamView = (TextView) view.findViewById(R.id.team);
         teamView.setText(player.getTeam());
     }
 
-    private void initValue(View view, Player player) {
+    private void initValue(View view, SMPlayer player) {
         TextView valueView = (TextView) view.findViewById(R.id.value);
         valueView.setText(player.getPrice());
     }
 
-    private void initPoints(View view, Player player) {
+    private void initPoints(View view, SMPlayer player) {
         TextView pointsView = (TextView) view.findViewById(R.id.points);
         pointsView.setText(player.getPointsAsNumber().toString());
     }
 
-    private void initIcons(View view, Player player) {
+    private void initIcons(View view, SMPlayer player) {
 
         ImageView aviso1 = (ImageView) view.findViewById(R.id.aviso1);
         ImageView aviso2 = (ImageView) view.findViewById(R.id.aviso2);

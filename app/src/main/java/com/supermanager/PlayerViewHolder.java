@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.sm.model.Player;
+import com.sm.model.SMPlayer;
 import com.squareup.picasso.Picasso;
 
 import butterknife.ButterKnife;
@@ -51,12 +51,19 @@ public class PlayerViewHolder extends RecyclerView.ViewHolder {
         cancel = (Button)itemView.findViewById(R.id.cancel);
     }
 
-    public void bindTitular(Player player) {
+    public void bindTitular(SMPlayer player) {
         txtName.setText(player.getName());
         txtTeam.setText(player.getTeam());
         txtPoints.setText(player.getPoints());
         txtValue.setText(player.getPrice());
-        Picasso.with(context).load(player.getImageUrl()).into(imgImage);
+
+        if (player.getImageUrl().isEmpty()) {
+            Picasso.with(context).load(R.drawable.ico_noseleccionado).into(imgImage);
+        }
+        else {
+            Picasso.with(context).load(player.getImageUrl()).into(imgImage);
+        }
+
         //Glide.with(context).load(player.getImageUrl()).into(imgImage);
         visibleIfCondition(doubtful, player.isDoubtful());
         visibleIfCondition(injury, player.isInjured());
